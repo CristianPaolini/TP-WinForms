@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForms", "WinForms\WinFor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{829FBC58-C16A-4D5B-BB70-BC55D7932019}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{380515EB-0E68-4746-92C1-5B6F5A2B6B9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{829FBC58-C16A-4D5B-BB70-BC55D7932019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{829FBC58-C16A-4D5B-BB70-BC55D7932019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{829FBC58-C16A-4D5B-BB70-BC55D7932019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{380515EB-0E68-4746-92C1-5B6F5A2B6B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380515EB-0E68-4746-92C1-5B6F5A2B6B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380515EB-0E68-4746-92C1-5B6F5A2B6B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380515EB-0E68-4746-92C1-5B6F5A2B6B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
