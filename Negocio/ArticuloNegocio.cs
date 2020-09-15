@@ -17,7 +17,7 @@ namespace Negocio
             SqlDataReader lector;
             List < Articulo > lista = new List<Articulo>();
 
-            conexion.ConnectionString = "data source = HP240G6\\SQLEXPRESS; initial catalog = CATALOGO_DB; integrated security = sspi"; //Ver de hacer ruta genérica o cambiarla entre push y pull
+            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, M.Descripcion Marca From ARTICULOS A, MARCAS M Where A.IDMarca=M.ID";
             comando.Connection = conexion;
@@ -40,6 +40,21 @@ namespace Negocio
             conexion.Close();
             return lista;
 
+        }
+
+        public void agregar(Articulo nuevo)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            List<Articulo> lista = new List<Articulo>();
+
+            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = "Insert into ARTICULOS (Nombre, Descripcion) Values ('" + nuevo.Nombre +  "', '" + nuevo.Descripcion + "')";
+            comando.Connection = conexion;
+
+            conexion.Open();
+            comando.ExecuteNonQuery();
         }
     }
 }

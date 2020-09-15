@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dominio;
+using Negocio;
 
 namespace WinForms
 {
@@ -21,5 +23,18 @@ namespace WinForms
         {
             Close();
         }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Articulo nuevo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            nuevo.Nombre = txtNombre.Text;
+            nuevo.Descripcion = txtDescripcion.Text;
+
+            negocio.agregar(nuevo);
+
+        }
+
     }
 }
