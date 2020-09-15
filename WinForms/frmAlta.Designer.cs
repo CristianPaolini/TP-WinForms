@@ -122,6 +122,7 @@
             this.Controls.Add(this.lblNombre);
             this.Name = "frmAlta";
             this.Text = "Alta Artículo";
+            this.Load += new System.EventHandler(this.frmAlta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

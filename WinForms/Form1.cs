@@ -21,6 +21,11 @@ namespace WinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cargar();
+        }
+
+        private void cargar()
+        {
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvLista.DataSource = negocio.listar();
             dgvLista.Columns[2].Visible = false;
@@ -31,7 +36,7 @@ namespace WinForms
             try
             {
                 Articulo articulo = (Articulo)dgvLista.CurrentRow.DataBoundItem;
-                pbArticulo.Load(articulo.UrlImage);
+                pbArticulo.Load(articulo.ImagenUrl);
             }
             catch (Exception)
             {
@@ -44,6 +49,7 @@ namespace WinForms
         {
             frmAlta alta = new frmAlta();
             alta.ShowDialog();
+            cargar();
         }
     }
 }
