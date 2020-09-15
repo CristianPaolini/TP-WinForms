@@ -8,9 +8,10 @@ namespace Dominio
 {
     public class Articulo
     {
-        private int id;
+        private int Id;
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string UrlImage { get; set; }
+        public Marca Marca { get; set; }
     }
 }

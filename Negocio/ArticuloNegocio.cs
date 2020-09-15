@@ -19,7 +19,7 @@ namespace Negocio
 
             conexion.ConnectionString = "data source = HP240G6\\SQLEXPRESS; initial catalog = CATALOGO_DB; integrated security = sspi"; //Ver de hacer ruta genérica o cambiarla entre push y pull
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Select ID, Nombre, Descripcion, ImagenUrl From ARTICULOS";
+            comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, M.Descripcion Marca From ARTICULOS A, MARCAS M Where A.IDMarca=M.ID";
             comando.Connection = conexion;
 
             conexion.Open();
@@ -30,6 +30,9 @@ namespace Negocio
                 aux.Nombre = lector.GetString(1);
                 aux.Descripcion = lector.GetString(2);
                 aux.UrlImage = (string)lector["ImagenUrl"];
+
+                aux.Marca = new Marca();
+                aux.Marca.Descripcion = (string)lector["Marca"];
 
                 lista.Add(aux);
             }
