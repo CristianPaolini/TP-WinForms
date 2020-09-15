@@ -39,5 +39,11 @@ namespace WinForms
             }
 
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAlta alta = new frmAlta();
+            alta.ShowDialog();
+        }
     }
 }
