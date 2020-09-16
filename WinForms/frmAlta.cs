@@ -30,7 +30,9 @@ namespace WinForms
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             nuevo.Nombre = txtNombre.Text;
+            nuevo.Codigo = txtCodigo.Text;
             nuevo.Descripcion = txtDescripcion.Text;
+            nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
             nuevo.Marca = (Marca)cboMarca.SelectedItem;
             nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
             negocio.agregar(nuevo);
