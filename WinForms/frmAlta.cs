@@ -33,11 +33,12 @@ namespace WinForms
             nuevo.Codigo = txtCodigo.Text;
             nuevo.Descripcion = txtDescripcion.Text;
             nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
+            nuevo.ImagenUrl = txtImagenUrl.Text;
             nuevo.Marca = (Marca)cboMarca.SelectedItem;
             nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
             negocio.agregar(nuevo);
 
-            MessageBox.Show("Artículo agregado Exitosamente", "Éxito");
+            MessageBox.Show("Artículo agregado exitosamente", "Éxito");
             Close();
 
         }

@@ -66,12 +66,12 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Insert into ARTICULOS (Nombre, Codigo, Descripcion, Precio, IdMarca, IdCategoria) Values (@Nombre, @Codigo, @Descripcion, @Precio, @IdMarca, @IdCategoria)";
+            comando.CommandText = "Insert into ARTICULOS (Nombre, Codigo, Descripcion, Precio, ImagenUrl, IdMarca, IdCategoria) Values (@Nombre, @Codigo, @Descripcion, @Precio, @ImagenUrl, @IdMarca, @IdCategoria)";
             comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
             comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
             comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
             comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
-            //comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl); lo podemos agregar al textBox, seria similar a los demas
+            comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl); 
             comando.Parameters.AddWithValue("@IdMarca", nuevo.Marca.Id);
             comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
             comando.Connection = conexion;
