@@ -32,7 +32,7 @@ namespace WinForms
             nuevo.Nombre = txtNombre.Text;
             nuevo.Descripcion = txtDescripcion.Text;
             nuevo.Marca = (Marca)cboMarca.SelectedItem;
-
+            nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
             negocio.agregar(nuevo);
 
             MessageBox.Show("Artículo agregado Exitosamente", "Éxito");
@@ -43,8 +43,10 @@ namespace WinForms
         private void frmAlta_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
             cboMarca.DataSource = marcaNegocio.listar();
+            cboCategoria.DataSource = categoriaNegocio.listar();
 
         }
     }

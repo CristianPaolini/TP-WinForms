@@ -20,7 +20,7 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, M.Descripcion Marca From ARTICULOS A, MARCAS M Where A.IDMarca=M.ID";
+            comando.CommandText = "Select A.ID, A.Codigo, A.Nombre, A.ImagenUrl, Precio, C.Descripcion Descripcion, M.Descripcion Marca From CATEGORIAS C, ARTICULOS A, MARCAS M Where A.IDMarca=M.ID and A.ID=C.Id"; //Como son las 3 tablas IDENTITY(1,1), puse ese AND o me listaba múltiples veces el mismo registro
             comando.Connection = conexion;
 
             conexion.Open();
@@ -30,8 +30,9 @@ namespace Negocio
                 Articulo aux = new Articulo();
                 aux.Codigo = lector.GetString(1);
                 aux.Nombre = lector.GetString(2);
-                aux.Descripcion = lector.GetString(3);
-                aux.ImagenUrl = (string)lector["ImagenUrl"];
+                //aux.Descripcion = (string)lector["Descripcion"];
+                aux.ImagenUrl = lector.GetString(3);
+                aux.Precio = lector.GetDecimal(4);
 
                 aux.Marca = new Marca();
                 aux.Marca.Descripcion = (string)lector["Marca"];
@@ -49,6 +50,16 @@ namespace Negocio
 
         public void agregar(Articulo nuevo)
         {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             List<Articulo> lista = new List<Articulo>();
