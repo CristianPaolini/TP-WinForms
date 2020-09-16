@@ -51,5 +51,12 @@ namespace WinForms
             alta.ShowDialog();
             cargar();
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            frmModificacion modificacion = new frmModificacion();
+            modificacion.ShowDialog();
+            cargar();
+        }
     }
 }

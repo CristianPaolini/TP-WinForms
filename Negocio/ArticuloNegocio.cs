@@ -79,5 +79,28 @@ namespace Negocio
             conexion.Open();
             comando.ExecuteNonQuery();
         }
+
+        public void eliminar(int idArticulo, int IdMarca, int IdCategoria)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            //List<Articulo> lista = new List<Articulo>();
+
+            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = "Delete From ARTICULOS Where Id=idArticulo AND IdMarca=IdMarca AND IdCategoria=IdCategoria";
+            
+
+        }
     }
 }
