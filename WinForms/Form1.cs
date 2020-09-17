@@ -28,7 +28,7 @@ namespace WinForms
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvLista.DataSource = negocio.listar();
-            dgvLista.Columns[2].Visible = false;
+            dgvLista.Columns[3].Visible = false;
         }
 
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
@@ -52,12 +52,12 @@ namespace WinForms
             cargar();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            frmModificacion modificacion = new frmModificacion();
-            modificacion.ShowDialog();
-            cargar();
-        }
+        //private void btnModificar_Click(object sender, EventArgs e)
+        //{
+        //    frmModificacion modificacion = new frmModificacion();
+        //    modificacion.ShowDialog();
+        //    cargar();
+        //}
 
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -30,11 +30,11 @@ namespace WinForms
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             nuevo.Nombre = txtNombre.Text;
-            nuevo.Codigo = txtCodigo.Text;
+            
             nuevo.Descripcion = txtDescripcion.Text;
             nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
-            nuevo.ImagenUrl = txtImagenUrl.Text;
-            nuevo.Marca = (Marca)cboMarca.SelectedItem;
+            
+            
             nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
             negocio.agregar(nuevo);
 
@@ -45,17 +45,19 @@ namespace WinForms
 
         private void frmAlta_Load(object sender, EventArgs e)
         {
-            cargar();
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            cboCategoria.DataSource = negocio.listar();
+            
 
         }
 
-        private void cargar()
-        {
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
-            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+        //private void cargar()
+        //{
+        //    marcanegocio marcanegocio = new marcanegocio();
+        //    categorianegocio categorianegocio = new categorianegocio();
 
-            cboMarca.DataSource = marcaNegocio.listar();
-            cboCategoria.DataSource = categoriaNegocio.listar();
-        }
+        //    cbomarca.datasource = marcanegocio.listar();
+        //    cbocategoria.datasource = categorianegocio.listar();
+        //}
     }
 }

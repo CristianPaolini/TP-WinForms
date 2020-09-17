@@ -20,7 +20,7 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Select A.ID, A.Codigo, A.Nombre, A.ImagenUrl, Precio, C.Descripcion Descripcion, M.Descripcion Marca From CATEGORIAS C, ARTICULOS A, MARCAS M Where A.IDMarca=M.ID and A.ID=C.Id"; //Como son las 3 tablas IDENTITY(1,1), puse ese AND o me listaba múltiples veces el mismo registro
+            comando.CommandText = "Select A.ID, A.Nombre, a.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria From CATEGORIAS C, ARTICULOS A Where A.IdCategoria = c.Id"; //Como son las 3 tablas IDENTITY(1,1), puse ese AND o me listaba múltiples veces el mismo registro
             comando.Connection = conexion;
 
             conexion.Open();
@@ -28,17 +28,17 @@ namespace Negocio
             while (lector.Read())
             {
                 Articulo aux = new Articulo();
-                aux.Codigo = lector.GetString(1);
-                aux.Nombre = lector.GetString(2);
-                //aux.Descripcion = (string)lector["Descripcion"];
-                aux.ImagenUrl = lector.GetString(3);
-                aux.Precio = lector.GetDecimal(4);
+                
+                aux.Nombre = lector.GetString(1);
+                aux.Descripcion = lector.GetString(2);
+                    
+                aux.ImagenUrl = (string) lector ["ImagenUrl"];
+                aux.Precio = lector.GetSqlMoney(4);
 
-                aux.Marca = new Marca();
-                aux.Marca.Descripcion = (string)lector["Marca"];
+              
 
                 aux.Categoria = new Categoria();
-                aux.Categoria.Descripcion = (string)lector["Descripcion"];
+                aux.Categoria.Descripcion = (string)lector["Categoria"];
 
                 lista.Add(aux);
             }
@@ -50,8 +50,7 @@ namespace Negocio
 
         public void agregar(Articulo nuevo)
         {
-            try
-            {
+            
 
                 SqlConnection conexion = new SqlConnection();
                 SqlCommand comando = new SqlCommand();
@@ -59,48 +58,44 @@ namespace Negocio
 
                 conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Insert into ARTICULOS (Nombre, Codigo, Descripcion, Precio, ImagenUrl, IdMarca, IdCategoria) Values (@Nombre, @Codigo, @Descripcion, @Precio, @ImagenUrl, @IdMarca, @IdCategoria)";
+                comando.CommandText = "Insert into ARTICULOS (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria) Values (@Nombre, @Descripcion, @Precio, '', @IdCategoria)";
                 comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-                comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
+                
                 comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
                 comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
-                comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
-                comando.Parameters.AddWithValue("@IdMarca", nuevo.Marca.Id);
+                //comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
+               
                 comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
                 comando.Connection = conexion;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        public void eliminar(int idArticulo, int IdMarca, int IdCategoria)
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            //List<Articulo> lista = new List<Articulo>();
-
-            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-            comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Delete From ARTICULOS Where Id=idArticulo AND IdMarca=IdMarca AND IdCategoria=IdCategoria";
             
 
         }
+
+        //public void eliminar(int idArticulo, int IdMarca, int IdCategoria)
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+
+        //    SqlConnection conexion = new SqlConnection();
+        //    SqlCommand comando = new SqlCommand();
+        //    //List<Articulo> lista = new List<Articulo>();
+
+        //    conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+        //    comando.CommandType = System.Data.CommandType.Text;
+        //    comando.CommandText = "Delete From ARTICULOS Where Id=idArticulo AND IdMarca=IdMarca AND IdCategoria=IdCategoria";
+            
+
+        //}
     }
-}
+
