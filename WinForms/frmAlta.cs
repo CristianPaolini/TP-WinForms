@@ -33,8 +33,7 @@ namespace WinForms
             
             nuevo.Descripcion = txtDescripcion.Text;
             nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
-            
-            
+            nuevo.ImagenUrl = txtUrlImagen.Text;
             nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
             negocio.agregar(nuevo);
 
