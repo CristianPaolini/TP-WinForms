@@ -20,7 +20,7 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Select A.ID, A.Nombre, a.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria From CATEGORIAS C, ARTICULOS A Where A.IdCategoria = c.Id"; //Como son las 3 tablas IDENTITY(1,1), puse ese AND o me listaba múltiples veces el mismo registro
+            comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria From CATEGORIAS C, ARTICULOS A Where A.IdCategoria = c.Id"; //Como son las 3 tablas IDENTITY(1,1), puse ese AND o me listaba múltiples veces el mismo registro
             comando.Connection = conexion;
 
             conexion.Open();
@@ -30,13 +30,9 @@ namespace Negocio
                 Articulo aux = new Articulo();
                 
                 aux.Nombre = lector.GetString(1);
-                aux.Descripcion = lector.GetString(2);
-                    
+                aux.Descripcion = lector.GetString(2); 
                 aux.ImagenUrl = (string) lector ["ImagenUrl"];
                 aux.Precio = lector.GetSqlMoney(4);
-
-              
-
                 aux.Categoria = new Categoria();
                 aux.Categoria.Descripcion = (string)lector["Categoria"];
 
@@ -58,13 +54,12 @@ namespace Negocio
 
                 conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Insert into ARTICULOS (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria) Values (@Nombre, @Descripcion, @Precio, '', @IdCategoria)";
+                comando.CommandText = "Insert into ARTICULOS (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria) Values (@Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria)";
                 comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
                 
                 comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
                 comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
-                //comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
-               
+                comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
                 comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
                 comando.Connection = conexion;
 
