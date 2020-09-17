@@ -53,6 +53,24 @@ namespace Negocio
             try
             {
 
+                SqlConnection conexion = new SqlConnection();
+                SqlCommand comando = new SqlCommand();
+                List<Articulo> lista = new List<Articulo>();
+
+                conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "Insert into ARTICULOS (Nombre, Codigo, Descripcion, Precio, ImagenUrl, IdMarca, IdCategoria) Values (@Nombre, @Codigo, @Descripcion, @Precio, @ImagenUrl, @IdMarca, @IdCategoria)";
+                comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+                comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
+                comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
+                comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
+                comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
+                comando.Parameters.AddWithValue("@IdMarca", nuevo.Marca.Id);
+                comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
+                comando.Connection = conexion;
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
             }
             catch (Exception)
             {
@@ -60,24 +78,6 @@ namespace Negocio
                 throw;
             }
 
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            List<Articulo> lista = new List<Articulo>();
-
-            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-            comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Insert into ARTICULOS (Nombre, Codigo, Descripcion, Precio, ImagenUrl, IdMarca, IdCategoria) Values (@Nombre, @Codigo, @Descripcion, @Precio, @ImagenUrl, @IdMarca, @IdCategoria)";
-            comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-            comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
-            comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
-            comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl); 
-            comando.Parameters.AddWithValue("@IdMarca", nuevo.Marca.Id);
-            comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
-            comando.Connection = conexion;
-
-            conexion.Open();
-            comando.ExecuteNonQuery();
         }
 
         public void eliminar(int idArticulo, int IdMarca, int IdCategoria)

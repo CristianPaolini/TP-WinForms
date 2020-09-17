@@ -21,7 +21,7 @@ namespace WinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cargar();
+             cargar();
         }
 
         private void cargar()
@@ -57,6 +57,11 @@ namespace WinForms
             frmModificacion modificacion = new frmModificacion();
             modificacion.ShowDialog();
             cargar();
+        }
+
+        private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

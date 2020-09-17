@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dgvLista = new System.Windows.Forms.DataGridView();
             this.pbArticulo = new System.Windows.Forms.PictureBox();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -39,30 +40,37 @@
             // 
             // dgvLista
             // 
-            this.dgvLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvLista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLista.Location = new System.Drawing.Point(30, 36);
+            this.dgvLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLista.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvLista.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvLista.Location = new System.Drawing.Point(12, 36);
             this.dgvLista.Name = "dgvLista";
-            this.dgvLista.Size = new System.Drawing.Size(297, 264);
+            this.dgvLista.Size = new System.Drawing.Size(430, 263);
             this.dgvLista.TabIndex = 0;
+            this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
             this.dgvLista.SelectionChanged += new System.EventHandler(this.dgvLista_SelectionChanged);
             // 
             // pbArticulo
             // 
-            this.pbArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbArticulo.Location = new System.Drawing.Point(369, 36);
+            this.pbArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbArticulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbArticulo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbArticulo.ErrorImage")));
+            this.pbArticulo.Location = new System.Drawing.Point(464, 36);
+            this.pbArticulo.MaximumSize = new System.Drawing.Size(307, 263);
+            this.pbArticulo.MinimumSize = new System.Drawing.Size(307, 263);
             this.pbArticulo.Name = "pbArticulo";
             this.pbArticulo.Size = new System.Drawing.Size(307, 263);
+            this.pbArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbArticulo.TabIndex = 1;
             this.pbArticulo.TabStop = false;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(30, 322);
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAgregar.Location = new System.Drawing.Point(78, 324);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(167, 23);
             this.btnAgregar.TabIndex = 2;
@@ -72,7 +80,9 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(267, 322);
+            this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnModificar.Location = new System.Drawing.Point(315, 324);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(167, 23);
             this.btnModificar.TabIndex = 3;
@@ -82,7 +92,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(509, 322);
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.Location = new System.Drawing.Point(557, 324);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(167, 23);
             this.button2.TabIndex = 4;
@@ -93,15 +105,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 357);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.ClientSize = new System.Drawing.Size(806, 359);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pbArticulo);
             this.Controls.Add(this.dgvLista);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(727, 318);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Catálogo Artículos";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).EndInit();

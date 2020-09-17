@@ -45,12 +45,17 @@ namespace WinForms
 
         private void frmAlta_Load(object sender, EventArgs e)
         {
+            cargar();
+
+        }
+
+        private void cargar()
+        {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
 
             cboMarca.DataSource = marcaNegocio.listar();
             cboCategoria.DataSource = categoriaNegocio.listar();
-
         }
     }
 }
