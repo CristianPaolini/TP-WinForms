@@ -50,6 +50,42 @@ namespace WinForms
 
         }
 
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
+                    e.Handled = true;
+        }
+
+        private void txtNombre_Validated(object sender, EventArgs e)
+        {
+            if (txtNombre.Text.Trim() == "")
+            {
+                epError.SetError(txtNombre, ("Por favor, introduzca nombre de artículo..."));
+                txtNombre.Focus();
+            }
+            epError.Clear();
+        }
+
+        private void txtDescripcion_Validated(object sender, EventArgs e)
+        {
+            if (txtDescripcion.Text.Trim() == "")
+            {
+                epError.SetError(txtDescripcion, ("Por favor, introduzca una descripción..."));
+                txtDescripcion.Focus();
+            }
+            epError.Clear();
+        }
+
+        private void txtPrecio_Validated(object sender, EventArgs e)
+        {
+            if (txtPrecio.Text.Trim() == "")
+            {
+                epError.SetError(txtPrecio, ("Por favor, introduzca una descripción..."));
+                txtPrecio.Focus();
+            }
+            epError.Clear();
+        }
+
         //private void cargar()
         //{
         //    marcanegocio marcanegocio = new marcanegocio();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlta));
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -41,6 +42,8 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
+            this.epError = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epError)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -64,9 +67,11 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(140, 93);
+            this.txtNombre.MaxLength = 30;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.Validated += new System.EventHandler(this.txtNombre_Validated);
             // 
             // txtDescripcion
             // 
@@ -74,6 +79,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 20);
             this.txtDescripcion.TabIndex = 4;
+            this.txtDescripcion.Validated += new System.EventHandler(this.txtDescripcion_Validated);
             // 
             // btnAceptar
             // 
@@ -129,6 +135,8 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 13;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
+            this.txtPrecio.Validated += new System.EventHandler(this.txtPrecio_Validated);
             // 
             // label1
             // 
@@ -145,6 +153,10 @@
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(121, 20);
             this.txtUrlImagen.TabIndex = 15;
+            // 
+            // epError
+            // 
+            this.epError.ContainerControl = this;
             // 
             // frmAlta
             // 
@@ -171,6 +183,7 @@
             this.Name = "frmAlta";
             this.Text = "Alta Artículo";
             this.Load += new System.EventHandler(this.frmAlta_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.epError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +203,6 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUrlImagen;
+        private System.Windows.Forms.ErrorProvider epError;
     }
 }
