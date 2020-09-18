@@ -26,19 +26,28 @@ namespace WinForms
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo nuevo = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                Articulo nuevo = new Articulo();
+                ArticuloNegocio negocio = new ArticuloNegocio();
 
-            nuevo.Nombre = txtNombre.Text;
+                nuevo.Nombre = txtNombre.Text;
+
+                nuevo.Descripcion = txtDescripcion.Text;
+                nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
+                nuevo.ImagenUrl = txtUrlImagen.Text;
+                nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
+                negocio.agregar(nuevo);
+
+                MessageBox.Show("Artículo agregado exitosamente", "Éxito");
+                Close();
+            }
+            catch (Exception)
+            {
+
+                
+            }
             
-            nuevo.Descripcion = txtDescripcion.Text;
-            nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
-            nuevo.ImagenUrl = txtUrlImagen.Text;
-            nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
-            negocio.agregar(nuevo);
-
-            MessageBox.Show("Artículo agregado exitosamente", "Éxito");
-            Close();
 
         }
 
@@ -63,7 +72,11 @@ namespace WinForms
                 epError.SetError(txtNombre, ("Por favor, introduzca nombre de artículo..."));
                 txtNombre.Focus();
             }
-            epError.Clear();
+            else
+            {
+                epError.Clear();
+            }
+            
         }
 
         private void txtDescripcion_Validated(object sender, EventArgs e)
@@ -73,17 +86,25 @@ namespace WinForms
                 epError.SetError(txtDescripcion, ("Por favor, introduzca una descripción..."));
                 txtDescripcion.Focus();
             }
-            epError.Clear();
+            else
+            {
+                epError.Clear();
+            }
+            
         }
 
         private void txtPrecio_Validated(object sender, EventArgs e)
         {
             if (txtPrecio.Text.Trim() == "")
             {
-                epError.SetError(txtPrecio, ("Por favor, introduzca una descripción..."));
+                epError.SetError(txtPrecio, ("Por favor, introduzca un precio..."));
                 txtPrecio.Focus();
             }
-            epError.Clear();
+            else
+            {
+                epError.Clear();
+            }
+            
         }
 
         //private void cargar()
