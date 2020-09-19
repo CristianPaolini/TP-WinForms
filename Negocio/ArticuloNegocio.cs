@@ -85,9 +85,9 @@ namespace Negocio
                 List<Articulo> lista = new List<Articulo>();
 
                 conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-                comando.CommandType = System.Data.CommandType.Text;     //revisar consulta de update
-                comando.CommandText = //"Update ARTICULOS set (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca) where Id=@Id";
-                                        "Update ARTICULOS set Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "Update ARTICULOS set Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
+
                 comando.Parameters.AddWithValue("@Id", artic.Id);
                 comando.Parameters.AddWithValue("@Nombre", artic.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion",artic.Descripcion);
@@ -106,6 +106,32 @@ namespace Negocio
                 throw ex;
             }
 
+        }
+
+        public void eliminar(int id)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+
+            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = "Delete From ARTICULOS Where Id=@Id";
+
+            comando.Parameters.AddWithValue("@Id", id);
+            comando.Connection = conexion;
+
+            conexion.Open();
+            comando.ExecuteNonQuery();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 

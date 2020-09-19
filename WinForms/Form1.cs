@@ -52,13 +52,6 @@ namespace WinForms
             cargar();
         }
 
-        //private void btnModificar_Click(object sender, EventArgs e)
-        //{
-        //    frmModificacion modificacion = new frmModificacion();
-        //    modificacion.ShowDialog();
-        //    cargar();
-        //}
-
         private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -73,6 +66,13 @@ namespace WinForms
             modificar.ShowDialog();
             cargar();
 
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            negocio.eliminar(((Articulo)dgvLista.CurrentRow.DataBoundItem).Id);
+            cargar();
         }
     }
 }
