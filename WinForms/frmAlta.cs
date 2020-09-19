@@ -14,9 +14,18 @@ namespace WinForms
 {
     public partial class frmAlta : Form
     {
+
+        private Articulo articulo = null;
+
         public frmAlta()
         {
             InitializeComponent();
+        }
+
+        public frmAlta(Articulo artic)
+        {
+            InitializeComponent();
+            articulo = artic;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -28,25 +37,37 @@ namespace WinForms
         {
             try
             {
-                Articulo nuevo = new Articulo();
+                //Articulo nuevo = new Articulo();
                 ArticuloNegocio negocio = new ArticuloNegocio();
 
-                nuevo.Nombre = txtNombre.Text;
-                nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
-                nuevo.ImagenUrl = txtUrlImagen.Text;
-                nuevo.Marca = (Marca)cboMarca.SelectedItem;
-                nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
+               if(articulo == null)
                
-                negocio.agregar(nuevo);
+               articulo = new Articulo();  //  si está vacio (porque no existe) lo crea. Sino, lo "recarga"
+               
+
+               articulo.Nombre = txtNombre.Text;
+               articulo.Descripcion = txtDescripcion.Text;
+               articulo.Precio = Convert.ToDecimal(txtPrecio.Text);
+               articulo.ImagenUrl = txtUrlImagen.Text;
+               articulo.Marca = (Marca)cboMarca.SelectedItem;
+               articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
+                if (articulo.Id == 0)
+                {
+                    negocio.agregar(articulo);
+                }
+                else
+                {
+                    negocio.modificar(articulo);
+                }
 
                 MessageBox.Show("Artículo agregado exitosamente", "Éxito");
                 Close();
             }
+
             catch (Exception ex)
             {
-
-                throw ex;
+                throw ex;       //acá pasa algo :/ creo que porque hace mal la consulta de UPDATE
             }
             
 
@@ -56,9 +77,28 @@ namespace WinForms
         {
             MarcaNegocio marca = new MarcaNegocio();
             cboMarca.DataSource = marca.listar();
+            cboMarca.ValueMember = "Id";
+            cboMarca.DisplayMember = "Descripcion";
+            cboMarca.SelectedIndex = -1;
 
             CategoriaNegocio negocio = new CategoriaNegocio();
             cboCategoria.DataSource = negocio.listar();
+            cboCategoria.ValueMember = "Id";
+            cboCategoria.DisplayMember = "Descripcion";
+            cboCategoria.SelectedIndex = -1;
+
+
+
+            if(articulo != null)
+            {
+                txtNombre.Text = articulo.Nombre;
+                txtDescripcion.Text = articulo.Descripcion;
+
+                cboMarca.SelectedValue = articulo.Marca.Id;
+                cboCategoria.SelectedValue = articulo.Categoria.Id;
+
+                Text = "Modificar artículo";
+            }
             
         }
 

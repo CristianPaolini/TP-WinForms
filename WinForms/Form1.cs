@@ -63,5 +63,16 @@ namespace WinForms
         {
 
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo artic;
+            artic = (Articulo)dgvLista.CurrentRow.DataBoundItem;        
+
+            frmAlta modificar = new frmAlta(artic);     // el nuevo constructor pasa los datos del actual elemento 
+            modificar.ShowDialog();
+            cargar();
+
+        }
     }
 }
