@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio;
 using System.Data.SqlClient;
-using Negocio;
+
 
 namespace Negocio
 {
@@ -21,7 +21,7 @@ namespace Negocio
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id";
-            //"Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria From CATEGORIAS C, ARTICULOS A Where A.IdCategoria = c.Id"; 
+            //"Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria, M.Descripcion Marca From CATEGORIAS C, ARTICULOS A, Marcas M Where A.IdCategoria = c.Id and A.IdMarca = m.Id"; 
             comando.Connection = conexion;
 
             conexion.Open();    
@@ -86,10 +86,10 @@ namespace Negocio
 
                 conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;     //revisar consulta de update
-                comando.CommandText = "Update ARTICULOS set (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca) where Id=@Id";
-
+                comando.CommandText = //"Update ARTICULOS set (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca) where Id=@Id";
+                                        "Update ARTICULOS set Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
                 comando.Parameters.AddWithValue("@Id", artic.Id);
-                comando.Parameters.AddWithValue("@Nombre",artic.Nombre);
+                comando.Parameters.AddWithValue("@Nombre", artic.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion",artic.Descripcion);
                 comando.Parameters.AddWithValue("@Precio",artic.Precio);
                 comando.Parameters.AddWithValue("@ImagenUrl",artic.ImagenUrl);

@@ -61,13 +61,13 @@ namespace WinForms
                     negocio.modificar(articulo);
                 }
 
-                MessageBox.Show("Artículo agregado exitosamente", "Éxito");
+                MessageBox.Show("Operación realizada exitosamente", "Éxito");
                 Close();
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;       //acá pasa algo :/ creo que porque hace mal la consulta de UPDATE
+                throw;       
             }
             
 
