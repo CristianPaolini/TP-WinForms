@@ -10,28 +10,28 @@ namespace Negocio
 {
     public class MarcaNegocio
     {
-        //public List<Marca> listar()
-        //{
-        //    SqlConnection conexion = new SqlConnection();
-        //    SqlCommand comando = new SqlCommand();
-        //    SqlDataReader lector;
-        //    List<Marca> lista = new List<Marca>();
+        public List<Marca> listar()
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            List<Marca> lista = new List<Marca>();
 
-        //    conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-        //    comando.CommandType = System.Data.CommandType.Text;
-        //    comando.CommandText = "Select Id, Descripcion From MARCAS";
-        //    comando.Connection = conexion;
+            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = "Select Id, Descripcion From MARCAS";
+            comando.Connection = conexion;
 
-        //    conexion.Open();
-        //    lector = comando.ExecuteReader();
+            conexion.Open();
+            lector = comando.ExecuteReader();
 
-        //    while (lector.Read())
-        //    {
-        //        lista.Add(new Marca((int)lector["Id"], (string)lector["Descripcion"]));
-        //    }
-        //    lector.Close();
-        //    conexion.Close();
-        //    return lista;
-        //}
+            while (lector.Read())
+            {
+                lista.Add(new Marca((int)lector["Id"], (string)lector["Descripcion"]));
+            }
+            lector.Close();
+            conexion.Close();
+            return lista;
+        }
     }
 }

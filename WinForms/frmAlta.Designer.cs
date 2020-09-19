@@ -43,13 +43,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
             this.epError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtMarca = new System.Windows.Forms.Label();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.epError)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(71, 100);
+            this.lblNombre.Location = new System.Drawing.Point(71, 28);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 0;
@@ -58,7 +60,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(52, 139);
+            this.lblDescripcion.Location = new System.Drawing.Point(52, 78);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
             this.lblDescripcion.TabIndex = 1;
@@ -66,7 +68,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(140, 93);
+            this.txtNombre.Location = new System.Drawing.Point(124, 28);
             this.txtNombre.MaxLength = 30;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
@@ -75,7 +77,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(140, 134);
+            this.txtDescripcion.Location = new System.Drawing.Point(124, 71);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 20);
             this.txtDescripcion.TabIndex = 4;
@@ -106,7 +108,7 @@
             // cboCategoria
             // 
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(140, 257);
+            this.cboCategoria.Location = new System.Drawing.Point(125, 271);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 8;
@@ -114,7 +116,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(61, 256);
+            this.lblCategoria.Location = new System.Drawing.Point(61, 274);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(57, 13);
             this.lblCategoria.TabIndex = 9;
@@ -123,7 +125,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(78, 178);
+            this.lblPrecio.Location = new System.Drawing.Point(78, 121);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(40, 13);
             this.lblPrecio.TabIndex = 12;
@@ -131,7 +133,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(140, 175);
+            this.txtPrecio.Location = new System.Drawing.Point(124, 121);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 13;
@@ -141,7 +143,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 217);
+            this.label1.Location = new System.Drawing.Point(50, 172);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 14;
@@ -149,7 +151,7 @@
             // 
             // txtUrlImagen
             // 
-            this.txtUrlImagen.Location = new System.Drawing.Point(140, 216);
+            this.txtUrlImagen.Location = new System.Drawing.Point(125, 172);
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(121, 20);
             this.txtUrlImagen.TabIndex = 15;
@@ -157,6 +159,23 @@
             // epError
             // 
             this.epError.ContainerControl = this;
+            // 
+            // txtMarca
+            // 
+            this.txtMarca.AutoSize = true;
+            this.txtMarca.Location = new System.Drawing.Point(83, 227);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(40, 13);
+            this.txtMarca.TabIndex = 16;
+            this.txtMarca.Text = "Marca:";
+            // 
+            // cboMarca
+            // 
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.Location = new System.Drawing.Point(125, 224);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(121, 21);
+            this.cboMarca.TabIndex = 17;
             // 
             // frmAlta
             // 
@@ -166,6 +185,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(356, 396);
+            this.Controls.Add(this.cboMarca);
+            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.txtUrlImagen);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPrecio);
@@ -204,5 +225,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUrlImagen;
         private System.Windows.Forms.ErrorProvider epError;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.Label txtMarca;
     }
 }

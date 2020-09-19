@@ -58,12 +58,6 @@
     <Compile Include="frmAlta.Designer.cs">
       <DependentUpon>frmAlta.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmModificacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmModificacion.Designer.cs">
-      <DependentUpon>frmModificacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -71,9 +65,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlta.resx">
       <DependentUpon>frmAlta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmModificacion.resx">
-      <DependentUpon>frmModificacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

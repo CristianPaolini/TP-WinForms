@@ -32,20 +32,21 @@ namespace WinForms
                 ArticuloNegocio negocio = new ArticuloNegocio();
 
                 nuevo.Nombre = txtNombre.Text;
-
                 nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.Precio = Convert.ToDecimal(txtPrecio.Text);
                 nuevo.ImagenUrl = txtUrlImagen.Text;
+                nuevo.Marca = (Marca)cboMarca.SelectedItem;
                 nuevo.Categoria = (Categoria)cboCategoria.SelectedItem;
+               
                 negocio.agregar(nuevo);
 
                 MessageBox.Show("Artículo agregado exitosamente", "Éxito");
                 Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                
+                throw ex;
             }
             
 
@@ -53,10 +54,12 @@ namespace WinForms
 
         private void frmAlta_Load(object sender, EventArgs e)
         {
+            MarcaNegocio marca = new MarcaNegocio();
+            cboMarca.DataSource = marca.listar();
+
             CategoriaNegocio negocio = new CategoriaNegocio();
             cboCategoria.DataSource = negocio.listar();
             
-
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
