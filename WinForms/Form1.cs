@@ -14,6 +14,8 @@ namespace WinForms
 {
     public partial class Form1 : Form
     {
+        private List<Articulo> listaOriginal;
+
         public Form1()
         {
             InitializeComponent();
@@ -22,12 +24,13 @@ namespace WinForms
         private void Form1_Load(object sender, EventArgs e)
         {
              cargar();
-        }
+        } 
 
         private void cargar()
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            dgvLista.DataSource = negocio.listar();
+            listaOriginal = negocio.listar();
+            dgvLista.DataSource = listaOriginal;
             dgvLista.Columns[0].Visible = false;
             dgvLista.Columns[1].Visible = false;
             dgvLista.Columns[4].Visible = false;
@@ -75,6 +78,28 @@ namespace WinForms
             ArticuloNegocio negocio = new ArticuloNegocio();
             negocio.eliminar(((Articulo)dgvLista.CurrentRow.DataBoundItem).Id);
             cargar();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Articulo> lista = (List<Articulo>)dgvLista.DataSource;
+            List<Articulo> listaFiltrada = listaOriginal.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            dgvLista.DataSource = listaFiltrada;
+
+        }
+
+        
+        private void txtFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtFiltro.Text == "")
+            {
+                dgvLista.DataSource = listaOriginal;
+            }
+            else
+            {
+                List<Articulo> listaFiltrada = listaOriginal.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+                dgvLista.DataSource = listaFiltrada;
+            }
         }
     }
 }

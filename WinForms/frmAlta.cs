@@ -66,7 +66,7 @@ namespace WinForms
             }
 
             catch (Exception ex)
-            {
+            {   
                 throw ex;       
             }
             
