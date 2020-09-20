@@ -28,7 +28,9 @@ namespace WinForms
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvLista.DataSource = negocio.listar();
-            dgvLista.Columns[2].Visible = false;
+            dgvLista.Columns[0].Visible = false;
+            dgvLista.Columns[1].Visible = false;
+            dgvLista.Columns[4].Visible = false;
         }
 
         private void dgvLista_SelectionChanged(object sender, EventArgs e)

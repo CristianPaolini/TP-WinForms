@@ -43,8 +43,8 @@ namespace WinForms
                if(articulo == null)
                
                articulo = new Articulo();  //  si está vacio (porque no existe) lo crea. Sino, lo "recarga"
-               
 
+               articulo.Codigo = txtCodigo.Text;
                articulo.Nombre = txtNombre.Text;
                articulo.Descripcion = txtDescripcion.Text;
                articulo.Precio = Convert.ToDecimal(txtPrecio.Text);
@@ -65,9 +65,9 @@ namespace WinForms
                 Close();
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;       
+                throw ex;       
             }
             
 

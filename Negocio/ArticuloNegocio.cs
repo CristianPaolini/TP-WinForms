@@ -20,7 +20,7 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id";
+            comando.CommandText = "Select A.ID, A.Codigo Codigo, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria, M.Descripcion Marca From ARTICULOS A join CATEGORIAS C on A.IdCategoria = C.Id join MARCAS M on A.IdMarca = M.Id";
             //"Select A.ID, A.Nombre, A.Descripcion, A.ImagenUrl, Precio, C.Descripcion Categoria, M.Descripcion Marca From CATEGORIAS C, ARTICULOS A, Marcas M Where A.IdCategoria = c.Id and A.IdMarca = m.Id"; 
             comando.Connection = conexion;
 
@@ -29,11 +29,13 @@ namespace Negocio
             while (lector.Read())
             {
                 Articulo aux = new Articulo();
+
                 aux.Id = (int)lector["ID"];
-                aux.Nombre = lector.GetString(1);
-                aux.Descripcion = lector.GetString(2);
+                aux.Codigo = (string)lector["Codigo"];
+                aux.Nombre = lector.GetString(2);
+                aux.Descripcion = lector.GetString(3);
                 aux.ImagenUrl = (string)lector["ImagenUrl"];
-                aux.Precio = lector.GetSqlMoney(4);
+                aux.Precio = lector.GetSqlMoney(5);
 
                 aux.Categoria = new Categoria();
                 aux.Categoria.Descripcion = (string)lector["Categoria"];
@@ -61,7 +63,8 @@ namespace Negocio
 
             conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Insert into ARTICULOS (Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca)";
+            comando.CommandText = "Insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Codigo, @Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca)";
+            comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
             comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
             comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
@@ -86,9 +89,10 @@ namespace Negocio
 
                 conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Update ARTICULOS set Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
+                comando.CommandText = "Update ARTICULOS set Codigo=@Codigo, Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
 
                 comando.Parameters.AddWithValue("@Id", artic.Id);
+                comando.Parameters.AddWithValue("@Codigo", artic.Codigo);
                 comando.Parameters.AddWithValue("@Nombre", artic.Nombre);
                 comando.Parameters.AddWithValue("@Descripcion",artic.Descripcion);
                 comando.Parameters.AddWithValue("@Precio",artic.Precio);
