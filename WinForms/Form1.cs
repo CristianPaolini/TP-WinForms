@@ -97,7 +97,7 @@ namespace WinForms
             }
             else
             {
-                List<Articulo> listaFiltrada = listaOriginal.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+                List<Articulo> listaFiltrada = listaOriginal.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()) || x.Descripcion.ToUpper().Contains(txtFiltro.Text.ToUpper()));
                 dgvLista.DataSource = listaFiltrada;
             }
         }

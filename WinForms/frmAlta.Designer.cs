@@ -53,7 +53,7 @@
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(72, 9);
+            this.lblNombre.Location = new System.Drawing.Point(68, 19);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 0;
@@ -182,7 +182,7 @@
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(84, 53);
+            this.lblCodigo.Location = new System.Drawing.Point(72, 53);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(43, 13);
             this.lblCodigo.TabIndex = 18;

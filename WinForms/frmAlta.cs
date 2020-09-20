@@ -37,12 +37,19 @@ namespace WinForms
         {
             try
             {
-                //Articulo nuevo = new Articulo();
-                ArticuloNegocio negocio = new ArticuloNegocio();
+                Validacion Val = new Validacion();
+                bool[] comprobacion = Val.validacionesfrmAlta(txtCodigo.Text, txtNombre.Text, txtDescripcion.Text, txtPrecio.Text, cboMarca.SelectedIndex, cboCategoria.SelectedIndex);
+                if (comprobacion[0] && comprobacion[1] && comprobacion[2] && comprobacion[3] && comprobacion[4] && comprobacion[5])
+                {
+                    //Articulo nuevo = new Articulo();
+                    ArticuloNegocio negocio = new ArticuloNegocio();
+                
 
                if(articulo == null)
                
                articulo = new Articulo();  //  si está vacio (porque no existe) lo crea. Sino, lo "recarga"
+
+                
 
                articulo.Codigo = txtCodigo.Text;
                articulo.Nombre = txtNombre.Text;
@@ -51,6 +58,7 @@ namespace WinForms
                articulo.ImagenUrl = txtUrlImagen.Text;
                articulo.Marca = (Marca)cboMarca.SelectedItem;
                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
 
                 if (articulo.Id == 0)
                 {
@@ -64,10 +72,16 @@ namespace WinForms
                 MessageBox.Show("Operación realizada exitosamente", "Éxito");
                 Close();
             }
+                else
+                {
+                    MessageBox.Show("Campos faltantes", "Error en la carga");
+                }
+            }
 
             catch (Exception ex)
             {   
-                throw ex;       
+                throw ex;
+                
             }
             
 
