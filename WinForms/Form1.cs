@@ -57,11 +57,6 @@ namespace WinForms
             cargar();
         }
 
-        private void dgvLista_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo artic;

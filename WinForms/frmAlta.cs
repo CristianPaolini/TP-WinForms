@@ -41,7 +41,6 @@ namespace WinForms
                 bool[] comprobacion = Val.validacionesfrmAlta(txtCodigo.Text, txtNombre.Text, txtDescripcion.Text, txtPrecio.Text, cboMarca.SelectedIndex, cboCategoria.SelectedIndex);
                 if (comprobacion[0] && comprobacion[1] && comprobacion[2] && comprobacion[3] && comprobacion[4] && comprobacion[5])
                 {
-                    //Articulo nuevo = new Articulo();
                     ArticuloNegocio negocio = new ArticuloNegocio();
                 
 
@@ -50,7 +49,6 @@ namespace WinForms
                articulo = new Articulo();  //  si está vacio (porque no existe) lo crea. Sino, lo "recarga"
 
                 
-
                articulo.Codigo = txtCodigo.Text;
                articulo.Nombre = txtNombre.Text;
                articulo.Descripcion = txtDescripcion.Text;
@@ -74,6 +72,13 @@ namespace WinForms
             }
                 else
                 {
+                    if (!comprobacion[0]) txtCodigo.BackColor = Color.Red;
+                    if (!comprobacion[1]) txtNombre.BackColor = Color.Red;
+                    if (!comprobacion[2]) txtDescripcion.BackColor = Color.Red;
+                    if (!comprobacion[3]) txtPrecio.BackColor = Color.Red;
+                    if (!comprobacion[4]) cboMarca.BackColor = Color.Red;
+                    if (!comprobacion[5]) cboCategoria.BackColor = Color.Red;
+
                     MessageBox.Show("Campos faltantes", "Error en la carga");
                 }
             }
@@ -84,7 +89,6 @@ namespace WinForms
                 
             }
             
-
         }
 
         private void frmAlta_Load(object sender, EventArgs e)
@@ -102,11 +106,13 @@ namespace WinForms
             cboCategoria.SelectedIndex = -1;
 
 
-
             if(articulo != null)
             {
                 txtNombre.Text = articulo.Nombre;
+                txtCodigo.Text = articulo.Codigo;
                 txtDescripcion.Text = articulo.Descripcion;
+                txtPrecio.Text = articulo.Precio.ToString();
+                txtUrlImagen.Text = articulo.ImagenUrl;
 
                 cboMarca.SelectedValue = articulo.Marca.Id;
                 cboCategoria.SelectedValue = articulo.Categoria.Id;
@@ -120,57 +126,32 @@ namespace WinForms
         {
             if((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
                     e.Handled = true;
+            txtPrecio.BackColor = System.Drawing.Color.White;
         }
 
-        private void txtNombre_Validated(object sender, EventArgs e)
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtNombre.Text.Trim() == "")
-            {
-                epError.SetError(txtNombre, ("Por favor, introduzca nombre de artículo..."));
-                txtNombre.Focus();
-            }
-            else
-            {
-                epError.Clear();
-            }
-            
+            txtNombre.BackColor = System.Drawing.Color.White;
         }
 
-        private void txtDescripcion_Validated(object sender, EventArgs e)
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtDescripcion.Text.Trim() == "")
-            {
-                epError.SetError(txtDescripcion, ("Por favor, introduzca una descripción..."));
-                txtDescripcion.Focus();
-            }
-            else
-            {
-                epError.Clear();
-            }
-            
+            txtCodigo.BackColor = System.Drawing.Color.White;
         }
 
-        private void txtPrecio_Validated(object sender, EventArgs e)
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtPrecio.Text.Trim() == "")
-            {
-                epError.SetError(txtPrecio, ("Por favor, introduzca un precio..."));
-                txtPrecio.Focus();
-            }
-            else
-            {
-                epError.Clear();
-            }
-            
+            txtDescripcion.BackColor = System.Drawing.Color.White;
         }
 
-        //private void cargar()
-        //{
-        //    marcanegocio marcanegocio = new marcanegocio();
-        //    categorianegocio categorianegocio = new categorianegocio();
+        private void cboMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboMarca.BackColor = System.Drawing.Color.White;
+        }
 
-        //    cbomarca.datasource = marcanegocio.listar();
-        //    cbocategoria.datasource = categorianegocio.listar();
-        //}
+        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboCategoria.BackColor = System.Drawing.Color.White;
+        }
     }
 }

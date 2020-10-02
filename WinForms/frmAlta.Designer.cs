@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlta));
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -42,12 +41,10 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUrlImagen = new System.Windows.Forms.TextBox();
-            this.epError = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtMarca = new System.Windows.Forms.Label();
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.epError)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -62,7 +59,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(52, 96);
+            this.lblDescripcion.Location = new System.Drawing.Point(52, 111);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
             this.lblDescripcion.TabIndex = 1;
@@ -75,20 +72,20 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
             this.txtNombre.TabIndex = 3;
-            this.txtNombre.Validated += new System.EventHandler(this.txtNombre_Validated);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(124, 96);
+            this.txtDescripcion.Location = new System.Drawing.Point(124, 106);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(121, 20);
             this.txtDescripcion.TabIndex = 4;
-            this.txtDescripcion.Validated += new System.EventHandler(this.txtDescripcion_Validated);
+            this.txtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcion_KeyPress);
             // 
             // btnAceptar
             // 
             this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptar.Location = new System.Drawing.Point(44, 350);
+            this.btnAceptar.Location = new System.Drawing.Point(52, 350);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 6;
@@ -110,15 +107,16 @@
             // cboCategoria
             // 
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(125, 299);
+            this.cboCategoria.Location = new System.Drawing.Point(125, 295);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 8;
+            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
             // 
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(61, 299);
+            this.lblCategoria.Location = new System.Drawing.Point(61, 295);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(57, 13);
             this.lblCategoria.TabIndex = 9;
@@ -127,7 +125,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(78, 147);
+            this.lblPrecio.Location = new System.Drawing.Point(78, 157);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(40, 13);
             this.lblPrecio.TabIndex = 12;
@@ -135,17 +133,16 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(124, 147);
+            this.txtPrecio.Location = new System.Drawing.Point(124, 153);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 13;
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
-            this.txtPrecio.Validated += new System.EventHandler(this.txtPrecio_Validated);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 198);
+            this.label1.Location = new System.Drawing.Point(49, 203);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 14;
@@ -153,19 +150,15 @@
             // 
             // txtUrlImagen
             // 
-            this.txtUrlImagen.Location = new System.Drawing.Point(124, 198);
+            this.txtUrlImagen.Location = new System.Drawing.Point(124, 200);
             this.txtUrlImagen.Name = "txtUrlImagen";
             this.txtUrlImagen.Size = new System.Drawing.Size(121, 20);
             this.txtUrlImagen.TabIndex = 15;
             // 
-            // epError
-            // 
-            this.epError.ContainerControl = this;
-            // 
             // txtMarca
             // 
             this.txtMarca.AutoSize = true;
-            this.txtMarca.Location = new System.Drawing.Point(79, 253);
+            this.txtMarca.Location = new System.Drawing.Point(79, 249);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(40, 13);
             this.txtMarca.TabIndex = 16;
@@ -174,15 +167,16 @@
             // cboMarca
             // 
             this.cboMarca.FormattingEnabled = true;
-            this.cboMarca.Location = new System.Drawing.Point(124, 253);
+            this.cboMarca.Location = new System.Drawing.Point(124, 247);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 21);
             this.cboMarca.TabIndex = 17;
+            this.cboMarca.SelectedIndexChanged += new System.EventHandler(this.cboMarca_SelectedIndexChanged);
             // 
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(72, 53);
+            this.lblCodigo.Location = new System.Drawing.Point(72, 65);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(43, 13);
             this.lblCodigo.TabIndex = 18;
@@ -190,10 +184,11 @@
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Location = new System.Drawing.Point(126, 53);
+            this.txtCodigo.Location = new System.Drawing.Point(126, 59);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(120, 20);
             this.txtCodigo.TabIndex = 19;
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // frmAlta
             // 
@@ -224,7 +219,6 @@
             this.Name = "frmAlta";
             this.Text = "Alta Artículo";
             this.Load += new System.EventHandler(this.frmAlta_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.epError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +238,6 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUrlImagen;
-        private System.Windows.Forms.ErrorProvider epError;
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.Label txtMarca;
         private System.Windows.Forms.TextBox txtCodigo;

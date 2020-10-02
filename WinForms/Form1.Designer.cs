@@ -52,7 +52,6 @@
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.Size = new System.Drawing.Size(430, 263);
             this.dgvLista.TabIndex = 0;
-            this.dgvLista.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLista_CellContentClick);
             this.dgvLista.SelectionChanged += new System.EventHandler(this.dgvLista_SelectionChanged);
             // 
             // pbArticulo
@@ -85,7 +84,7 @@
             // 
             this.btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnModificar.Location = new System.Drawing.Point(315, 324);
+            this.btnModificar.Location = new System.Drawing.Point(317, 324);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(167, 23);
             this.btnModificar.TabIndex = 3;
@@ -97,7 +96,7 @@
             // 
             this.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEliminar.Location = new System.Drawing.Point(557, 324);
+            this.btnEliminar.Location = new System.Drawing.Point(556, 324);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(167, 23);
             this.btnEliminar.TabIndex = 4;
