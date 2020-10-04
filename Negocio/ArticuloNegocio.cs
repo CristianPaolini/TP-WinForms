@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Negocio;
 using System.Data.SqlClient;
 
 
@@ -55,52 +56,36 @@ namespace Negocio
         public void agregar(Articulo nuevo)
         {
 
+            AccesoDatos conexion = new AccesoDatos();
 
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            List<Articulo> lista = new List<Articulo>();
-
-            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-            comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText = "Insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Codigo, @Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca)";
-            comando.Parameters.AddWithValue("@Codigo", nuevo.Codigo);
-            comando.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-            comando.Parameters.AddWithValue("@Descripcion", nuevo.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", nuevo.Precio);
-            comando.Parameters.AddWithValue("@ImagenUrl", nuevo.ImagenUrl);
-            comando.Parameters.AddWithValue("@IdCategoria", nuevo.Categoria.Id);
-            comando.Parameters.AddWithValue("@IdMarca", nuevo.Marca.Id);
-            comando.Connection = conexion;
-
-            conexion.Open();
-            comando.ExecuteNonQuery();
+            conexion.setearQuery("Insert into ARTICULOS (Codigo, Nombre, Descripcion, Precio, ImagenUrl, IdCategoria, IdMarca) Values (@Codigo, @Nombre, @Descripcion, @Precio, @ImagenUrl, @IdCategoria, @IdMarca)");
+            conexion.agregarParametro("@Codigo", nuevo.Codigo);
+            conexion.agregarParametro("@Nombre", nuevo.Nombre);
+            conexion.agregarParametro("@Descripcion", nuevo.Descripcion);
+            conexion.agregarParametro("@Precio", nuevo.Precio);
+            conexion.agregarParametro("@ImagenUrl", nuevo.ImagenUrl);
+            conexion.agregarParametro("@IdCategoria", nuevo.Categoria.Id);
+            conexion.agregarParametro("@IdMarca", nuevo.Marca.Id);
+            conexion.ejecutarAccion();
 
         }
 
         public void modificar(Articulo artic)
         {
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            List<Articulo> lista = new List<Articulo>();
-
-            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-            comando.CommandType = System.Data.CommandType.Text;
+            AccesoDatos conexion = new AccesoDatos();
 
             try
             {
-                comando.CommandText = "Update ARTICULOS set Codigo=@Codigo, Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id";
-                comando.Parameters.AddWithValue("@Id", artic.Id);
-                comando.Parameters.AddWithValue("@Codigo", artic.Codigo);
-                comando.Parameters.AddWithValue("@Nombre", artic.Nombre);
-                comando.Parameters.AddWithValue("@Descripcion",artic.Descripcion);
-                comando.Parameters.AddWithValue("@Precio",artic.Precio);
-                comando.Parameters.AddWithValue("@ImagenUrl",artic.ImagenUrl);
-                comando.Parameters.AddWithValue("@IdCategoria",artic.Categoria.Id);
-                comando.Parameters.AddWithValue("@IdMarca",artic.Marca.Id);
-                comando.Connection = conexion;
-
-                conexion.Open();
-                comando.ExecuteNonQuery();  
+                conexion.setearQuery("Update ARTICULOS set Codigo=@Codigo, Nombre=@Nombre, Descripcion=@Descripcion, Precio=@Precio, ImagenUrl=@ImagenUrl, IdCategoria=@IdCategoria, IdMarca=@IdMarca where Id=@Id");
+                conexion.agregarParametro("@Id", artic.Id);
+                conexion.agregarParametro("@Codigo", artic.Codigo);
+                conexion.agregarParametro("@Nombre", artic.Nombre);
+                conexion.agregarParametro("@Descripcion",artic.Descripcion);
+                conexion.agregarParametro("@Precio",artic.Precio);
+                conexion.agregarParametro("@ImagenUrl",artic.ImagenUrl);
+                conexion.agregarParametro("@IdCategoria",artic.Categoria.Id);
+                conexion.agregarParametro("@IdMarca",artic.Marca.Id);
+                conexion.ejecutarAccion();  
             }
 
             catch(Exception ex)
@@ -112,18 +97,13 @@ namespace Negocio
 
         public void eliminar(int id)
         {
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            conexion.ConnectionString = "data source=.\\sqlexpress; initial catalog=CATALOGO_DB; integrated security=sspi";
-            comando.CommandType = System.Data.CommandType.Text;
+            AccesoDatos conexion = new AccesoDatos();
 
             try
             {
-                comando.CommandText = "Delete From ARTICULOS Where Id=@Id";
-                comando.Parameters.AddWithValue("@Id", id);
-                comando.Connection = conexion;
-                conexion.Open();
-                comando.ExecuteNonQuery();
+                conexion.setearQuery("Delete From ARTICULOS Where Id=@Id");
+                conexion.agregarParametro("@Id", id);
+                conexion.ejecutarAccion();
             }
             catch (Exception ex)
             {
